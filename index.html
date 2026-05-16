@@ -18,16 +18,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* RU FONT OVERRIDE */
 :lang(ru) .card-title,
 :lang(ru) .card-desc-line,
+:lang(ru) .ss-option-title,
+:lang(ru) .ss-option-desc,
+:lang(ru) .desc-line,
 :lang(ru) .sec-label,
 :lang(ru) .compat p,
 :lang(ru) .btn {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* ── NAV ── */
+/* NAV */
 .lang-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -35,9 +37,9 @@ body {
   display: flex;
   justify-content: flex-end;
   padding: 12px 24px;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid #0d0d0d;
 }
 .lang-switcher { display: flex; gap: 4px; }
@@ -58,37 +60,34 @@ body {
 .lang-btn.active, .lang-btn:hover {
   border-color: rgba(79,216,232,0.5);
   color: #4fd8e8;
-  box-shadow: 0 0 12px rgba(79,216,232,0.08);
+  box-shadow: 0 0 12px rgba(79,216,232,0.07);
 }
 
-/* ── HERO ── */
+/* HERO */
 .hero {
-  padding: 110px 24px 60px;
+  padding: 110px 20px 60px;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-
 .hero-glow {
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 500px;
-  background: radial-gradient(ellipse at 50% 20%,
-    rgba(79,216,232,0.07) 0%,
-    rgba(79,216,232,0.025) 35%,
+  width: 700px; height: 480px;
+  background: radial-gradient(ellipse at 50% 15%,
+    rgba(79,216,232,0.065) 0%,
+    rgba(79,216,232,0.02) 40%,
     transparent 70%);
   pointer-events: none;
 }
-
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgba(79,216,232,0.2);
+  border: 1px solid rgba(79,216,232,0.18);
   background: rgba(79,216,232,0.04);
-  color: rgba(79,216,232,0.7);
+  color: rgba(79,216,232,0.65);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -102,18 +101,21 @@ body {
   background: #4fd8e8;
   border-radius: 50%;
   animation: blink 2.5s ease-in-out infinite;
-  box-shadow: 0 0 6px rgba(79,216,232,0.6);
+  box-shadow: 0 0 6px rgba(79,216,232,0.7);
+  flex-shrink: 0;
 }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
 
 .hero h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(52px, 14vw, 130px);
+  font-size: clamp(44px, 13vw, 130px);
   line-height: 0.9;
   letter-spacing: 0.02em;
   position: relative;
   z-index: 1;
   text-transform: uppercase;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .hero-sub {
   display: block;
@@ -128,15 +130,13 @@ body {
   0%,100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
-
 .hero-line {
-  width: 40px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(79,216,232,0.4), transparent);
+  width: 36px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79,216,232,0.35), transparent);
   margin: 28px auto 0;
 }
 
-/* ── PRICE SECTION ── */
+/* PRICE SECTION */
 .price-section {
   max-width: 680px;
   margin: 48px auto 0;
@@ -146,14 +146,13 @@ body {
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(79,216,232,0.35);
+  color: rgba(79,216,232,0.3);
   margin-bottom: 4px;
 }
 
-/* ── CARD ── */
+/* CARD */
 .card {
   border-bottom: 1px solid #0e0e0e;
-  transition: background 0.2s;
   position: relative;
 }
 .card::before {
@@ -163,144 +162,104 @@ body {
   width: 1px;
   background: transparent;
   transition: background 0.3s;
+  pointer-events: none;
 }
 .card:hover::before {
-  background: linear-gradient(180deg, transparent, rgba(79,216,232,0.3), transparent);
+  background: linear-gradient(180deg, transparent, rgba(79,216,232,0.25), transparent);
 }
-.card:hover {
-  background: rgba(79,216,232,0.018);
-}
+.card:hover { background: rgba(79,216,232,0.016); }
 
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   padding: 20px 0;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 .card-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   min-width: 0;
+  flex: 1;
 }
 .card-title {
   font-size: 13px;
   font-weight: 500;
-  color: #b8d4d8;
+  color: #b0cdd2;
   line-height: 1.3;
   letter-spacing: 0.01em;
 }
-.card-title.hot { color: #e8f4f6; }
+.card-title.hot { color: #ddeef1; }
+.card-title.free-title { color: #4a8a92; }
 
 .card-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-shrink: 0;
 }
 .card-price {
   font-size: 13px;
   font-weight: 500;
-  color: #fff;
+  color: #ccc;
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
 .card-price.hot {
   color: #4fd8e8;
+  animation: glowPulse 3s ease-in-out infinite;
 }
 .card-price.free {
-  color: rgba(79,216,232,0.6);
+  color: rgba(79,216,232,0.5);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.06em;
 }
+@keyframes glowPulse {
+  0%,100% { text-shadow: 0 0 0 rgba(79,216,232,0); }
+  50% { text-shadow: 0 0 14px rgba(79,216,232,0.22); }
+}
 
 /* ARROW */
 .arrow {
-  width: 16px;
-  height: 16px;
+  width: 18px; height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 .arrow svg {
-  width: 10px;
-  height: 10px;
-  stroke: rgba(79,216,232,0.35);
+  width: 10px; height: 10px;
+  stroke: rgba(79,216,232,0.28);
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: stroke 0.25s;
 }
-.card-header:hover .arrow svg { stroke: rgba(79,216,232,0.7); }
+.card-header:hover .arrow svg { stroke: rgba(79,216,232,0.6); }
 .card.open .arrow { transform: rotate(180deg); }
 .card.open .arrow svg { stroke: #4fd8e8; }
 
-/* EXPANDABLE BODY */
+/* BODY */
 .card-body {
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.35s ease;
   opacity: 0;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
 }
-.card.open .card-body {
-  opacity: 1;
-}
-.card-body-inner {
-  padding: 0 0 20px 0;
-}
+.card.open .card-body { opacity: 1; }
+.card-body-inner { padding: 0 0 20px 0; }
 
 .desc-block {
   padding-left: 14px;
-  border-left: 1px solid rgba(79,216,232,0.1);
+  border-left: 1px solid rgba(79,216,232,0.09);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
-
-/* START-STOP SPECIAL: sub-options */
-.ss-options {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 2px;
-}
-.ss-option {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 14px 16px;
-  border: 1px solid #111;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.012);
-  transition: border-color 0.2s, background 0.2s;
-}
-.ss-option:hover {
-  border-color: rgba(79,216,232,0.12);
-  background: rgba(79,216,232,0.02);
-}
-.ss-option-title {
-  font-size: 11px;
-  font-weight: 500;
-  color: #4fd8e8;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.ss-option-desc {
-  font-size: 11.5px;
-  font-weight: 300;
-  color: #383838;
-  line-height: 1.65;
-}
-
 .desc-line {
   font-size: 11.5px;
   font-weight: 300;
@@ -308,12 +267,58 @@ body {
   line-height: 1.65;
 }
 .desc-line.note {
-  color: #2a4a50;
+  color: #1e4048;
   font-size: 11px;
-  letter-spacing: 0.02em;
 }
 
-/* ── COMPAT ── */
+/* START-STOP OPTIONS */
+.ss-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ss-option {
+  padding: 14px 16px;
+  border: 1px solid #111;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.01);
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ss-option:hover {
+  border-color: rgba(79,216,232,0.1);
+  background: rgba(79,216,232,0.018);
+}
+.ss-option-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ss-option-title {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(79,216,232,0.7);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.ss-option-price {
+  font-size: 13px;
+  font-weight: 500;
+  color: #4fd8e8;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ss-option-desc {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: #363636;
+  line-height: 1.65;
+}
+
+/* COMPAT */
 .compat {
   max-width: 680px;
   margin: 24px auto 0;
@@ -321,14 +326,13 @@ body {
 }
 .compat p {
   font-size: 11px;
-  color: #252525;
+  color: #222;
   line-height: 1.65;
   padding-left: 14px;
-  border-left: 1px solid rgba(79,216,232,0.12);
-  letter-spacing: 0.01em;
+  border-left: 1px solid rgba(79,216,232,0.1);
 }
 
-/* ── CONTACT ── */
+/* CONTACT */
 .contact-section {
   max-width: 680px;
   margin: 44px auto 0;
@@ -354,46 +358,22 @@ body {
   text-transform: uppercase;
   border-radius: 2px;
   transition: all 0.25s;
-  position: relative;
-  overflow: hidden;
 }
-.btn-call {
-  background: #4fd8e8;
-  color: #000;
-}
-.btn-call:hover {
-  background: #6de2f0;
-  box-shadow: 0 0 24px rgba(79,216,232,0.25);
-}
-.btn-tg {
-  background: transparent;
-  border: 1px solid #161616;
-  color: #444;
-}
-.btn-tg:hover {
-  border-color: rgba(79,216,232,0.3);
-  color: #4fd8e8;
-  box-shadow: 0 0 16px rgba(79,216,232,0.06);
-}
+.btn-call { background: #4fd8e8; color: #000; }
+.btn-call:hover { background: #6de2f0; box-shadow: 0 0 24px rgba(79,216,232,0.22); }
+.btn-tg { background: transparent; border: 1px solid #161616; color: #3a3a3a; }
+.btn-tg:hover { border-color: rgba(79,216,232,0.28); color: #4fd8e8; }
 
-/* ── MOBILE ── */
+/* MOBILE */
 @media(max-width:600px) {
-  .hero { padding: 100px 20px 48px; }
+  .hero { padding: 96px 16px 48px; }
   .price-section { padding: 0 16px; }
   .compat { padding: 0 16px; }
   .contact-section { padding: 0 16px 64px; }
   .card-header { padding: 18px 0; }
   .card-title { font-size: 12.5px; }
   .card-price { font-size: 12px; }
-}
-
-/* GLOW PULSE on hot items */
-@keyframes glowPulse {
-  0%,100% { text-shadow: 0 0 8px rgba(79,216,232,0); }
-  50% { text-shadow: 0 0 16px rgba(79,216,232,0.2); }
-}
-.card-price.hot {
-  animation: glowPulse 3s ease-in-out infinite;
+  .ss-option { padding: 12px 13px; }
 }
 </style>
 </head>
@@ -407,9 +387,7 @@ body {
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
 
@@ -418,68 +396,72 @@ body {
   <div id="badge-en" class="badge" style="display:none"><span class="badge-dot"></span>Mercedes-Benz only</div>
 
   <h1 id="h1-lv">MERCEDES<br><span class="hero-sub">KODĒŠANA</span></h1>
-  <h1 id="h1-ru" style="display:none">MERCEDES<br><span class="hero-sub">КОДИРОВАНИЕ</span></h1>
+  <h1 id="h1-ru" style="display:none">MERCEDES<br><span class="hero-sub" style="font-size:clamp(36px,10vw,110px)">КОДИРОВАНИЕ</span></h1>
   <h1 id="h1-en" style="display:none">MERCEDES<br><span class="hero-sub">CODING</span></h1>
 
   <div class="hero-line"></div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     LV
-══════════════════════════════════════════ -->
+<!-- ══════════ LV ══════════ -->
 <section class="price-section" id="prices-lv">
   <p class="sec-label">Cenas</p>
 
-  <!-- START/STOP — special expandable -->
+  <!-- 1. DIAGNOSTIKA -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
-      <div class="card-left">
-        <span class="card-title hot">Start / Stop</span>
-      </div>
+      <div class="card-left"><span class="card-title free-title">Diagnostika un kļūdu dzēšana</span></div>
       <div class="card-right">
-        <span class="card-price hot">no 45 €</span>
-        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="ss-options">
-          <div class="ss-option">
-            <span class="ss-option-title">Pilnīga atslēgšana &nbsp;—&nbsp; 55 €</span>
-            <span class="ss-option-desc">Start/Stop sistēma tiek izslēgta uz visiem laikiem programmatūras līmenī. Motors nekad neapstājas pie luksoforiem, sastrēgumos vai īsās stāvvietās. Nav nepieciešams nospiest nevienu pogu. Stāvoklis saglabājas pat pēc automašīnas restartēšanas.</span>
-          </div>
-          <div class="ss-option">
-            <span class="ss-option-title">Apgrieztā loģika &nbsp;—&nbsp; 45 €</span>
-            <span class="ss-option-desc">Start/Stop pēc noklusējuma ir izslēgts. Ja nepieciešams, to var aktivizēt ar pogu manuāli. Tas ir pretēji rūpnīcas iestatījumam, kur sistēma katru reizi ieslēdzas automātiski un jāizslēdz manuāli.</span>
-          </div>
-          <div class="ss-option">
-            <span class="ss-option-title">Atmiņas režīms &nbsp;—&nbsp; 45 €</span>
-            <span class="ss-option-desc">Automašīna atceras pēdējo izvēlēto Start/Stop stāvokli. Ja pirms izslēgšanas sistēma bija deaktivizēta, tā paliek deaktivizēta arī nākamajā braucienā. Vadītājam vairs nav jādomā par pogas nospiešanu katrā reizē.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title hot">AMG izvēlne klasterī</span></div>
-      <div class="card-right">
-        <span class="card-price hot">80 €</span>
+        <span class="card-price free">Bez maksas</span>
         <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
       </div>
     </div>
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
-      <span class="desc-line">Aktivizē pilnu AMG sporta izvēlni instrumentu klasterī ar papildu datu ekrāniem.</span>
-      <span class="desc-line">Displejs rāda dzinēja jaudu un griezes momentu procentos un absolūtās vērtībās, sānu G-spēku, dzesēšanas šķidruma un eļļas temperatūru un citus parametrus reāllaikā.</span>
-      <span class="desc-line">Ekrāni ir pieejami bez papildu aparatūras uzstādīšanas, ja attiecīgā elektronika jau ir automašīnā.</span>
-      <span class="desc-line note">Parasti pieejams W205, W213, W222, W166 un līdzīgiem modeļiem ar COMAND vai MBUX.</span>
+      <span class="desc-line">Pilna automašīnas diagnostika ar profesionālo MB Star iekārtu.</span>
+      <span class="desc-line">Tiek pārbaudītas visas sistēmas: dzinējs, transmisija, drošībsspilveni, ABS, ESP, klimata kontrole un citi moduļi.</span>
+      <span class="desc-line">Visi kļūdu kodi tiek nolasīti, pārskatīti un pēc nepieciešamības dzēsti.</span>
     </div></div></div>
   </div>
 
+  <!-- 2. START/STOP -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title hot">AMG / Maybach startekrāns</span></div>
+      <div class="card-left"><span class="card-title hot">Start / Stop</span></div>
+      <div class="card-right">
+        <span class="card-price hot">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner">
+      <div class="ss-options">
+        <div class="ss-option">
+          <div class="ss-option-header">
+            <span class="ss-option-title">Pilnīga atslēgšana</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
+          <span class="ss-option-desc">Start/Stop sistēma tiek izslēgta uz visiem laikiem programmatūras līmenī. Motors nekad neapstājas pie luksoforiem, sastrēgumos vai īsās stāvvietās. Nav nepieciešams nospiest nevienu pogu. Stāvoklis saglabājas pat pēc automašīnas restartēšanas.</span>
+        </div>
+        <div class="ss-option">
+          <div class="ss-option-header">
+            <span class="ss-option-title">Apgrieztā loģika</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
+          <span class="ss-option-desc">Start/Stop pēc noklusējuma ir izslēgts. Ja nepieciešams, to var aktivizēt ar pogu manuāli. Pretēji rūpnīcas iestatījumam, kur sistēma katru reizi ieslēdzas automātiski un jāizslēdz manuāli.</span>
+        </div>
+        <div class="ss-option">
+          <div class="ss-option-header">
+            <span class="ss-option-title">Atmiņas režīms</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
+          <span class="ss-option-desc">Automašīna atceras pēdējo izvēlēto Start/Stop stāvokli. Ja pirms izslēgšanas sistēma bija deaktivizēta, tā paliek deaktivizēta arī nākamajā braucienā. Vadītājam vairs nav jādomā par pogas nospiešanu katrā reizē.</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 3. AMG/MAYBACH LOGO -->
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG / Maybach logotips iedarbinot</span></div>
       <div class="card-right">
         <span class="card-price hot">50 €</span>
         <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
@@ -493,6 +475,24 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 4. AMG MENU -->
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AMG izvēlne klasterī</span></div>
+      <div class="card-right">
+        <span class="card-price">80 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē pilnu AMG sporta izvēlni instrumentu klasterī ar papildu datu ekrāniem.</span>
+      <span class="desc-line">Displejs rāda dzinēja jaudu un griezes momentu procentos un absolūtās vērtībās, sānu G-spēku, dzesēšanas šķidruma un eļļas temperatūru un citus parametrus reāllaikā.</span>
+      <span class="desc-line">Ekrāni ir pieejami bez papildu aparatūras uzstādīšanas, ja attiecīgā elektronika jau ir automašīnā.</span>
+      <span class="desc-line note">Parasti pieejams W205, W213, W222, W166 un līdzīgiem modeļiem ar COMAND vai MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <!-- 5. AMG DIZAINS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">AMG auto dizains</span></div>
@@ -509,6 +509,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 6. AMBIENT -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Ambient apgaismojums</span></div>
@@ -525,6 +526,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 7. WELCOME LIGHTS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Sveiciena gaismas</span></div>
@@ -540,6 +542,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 8. JOSTA PRIEKSHA -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Drošības jostas brīdinājums</span></div>
@@ -556,6 +559,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 9. JOSTA AIZMUGURE -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Aizmugurējo jostu brīdinājums</span></div>
@@ -571,6 +575,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 10. ADBLUE -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">AdBlue līmeņa displejs</span></div>
@@ -587,6 +592,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 11. ANTI-THEFT -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Anti-Theft signalizācija</span></div>
@@ -603,6 +609,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 12. RIEPU SPIEDIENS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Riepu spiediena sistēma</span></div>
@@ -618,6 +625,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 13. BURMESTER -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Premium Sound / Burmester</span></div>
@@ -634,6 +642,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 14. VIDEO -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Video kustības laikā</span></div>
@@ -650,6 +659,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 15. DRL -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Aizmugurējās gaismas ar DRL</span></div>
@@ -666,6 +676,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 16. ANALOGS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Analogais ekrāns</span></div>
@@ -681,6 +692,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 17. RECIRKULACIJA -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Gaisa recirkulācija</span></div>
@@ -696,6 +708,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 18. PARKTRONIC SOUND -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Parktronic skaņas paplašinājums</span></div>
@@ -711,6 +724,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 19. PARKTRONIC VOL -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Parktronic skaļums</span></div>
@@ -726,6 +740,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 20. DEGVIELA S-CLASS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Degvielas displejs (S-class)</span></div>
@@ -741,6 +756,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 21. PAGRIEZ -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Viena pieskāriena pagrieziena rādītājs</span></div>
@@ -756,6 +772,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 22. AUX -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Aux kontrole</span></div>
@@ -771,6 +788,7 @@ body {
     </div></div></div>
   </div>
 
+  <!-- 23. MERVIENIBAS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Mērvienību maiņa</span></div>
@@ -786,50 +804,57 @@ body {
     </div></div></div>
   </div>
 
-  <div class="card">
-    <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title">Diagnostika un kļūdu dzēšana</span></div>
-      <div class="card-right">
-        <span class="card-price free">Bez maksas</span>
-        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
-      </div>
-    </div>
-    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
-      <span class="desc-line">Pilna automašīnas diagnostika ar profesionālo MB Star iekārtu.</span>
-      <span class="desc-line">Tiek pārbaudītas visas sistēmas: dzinējs, transmisija, drošībsspilveni, ABS, ESP, klimata kontrole un citi moduļi.</span>
-      <span class="desc-line">Visi kļūdu kodi tiek nolasīti, pārskatīti un pēc nepieciešamības dzēsti.</span>
-    </div></div></div>
-  </div>
-
 </section>
 
-<!-- ══════════════════════════════════════════
-     RU
-══════════════════════════════════════════ -->
+<!-- ══════════ RU ══════════ -->
 <section class="price-section" id="prices-ru" style="display:none">
   <p class="sec-label">Цены</p>
 
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title free-title">Диагностика и сброс ошибок</span></div>
+      <div class="card-right">
+        <span class="card-price free">Бесплатно</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Полная диагностика автомобиля профессиональным оборудованием MB Star.</span>
+      <span class="desc-line">Проверяются все системы: двигатель, трансмиссия, подушки безопасности, ABS, ESP, климат-контроль, электронные модули и другие.</span>
+      <span class="desc-line">Все найденные коды ошибок считываются, анализируются и при необходимости сбрасываются.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title hot">Start / Stop</span></div>
       <div class="card-right">
-        <span class="card-price hot">от 45 €</span>
+        <span class="card-price hot">55 €</span>
         <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
       </div>
     </div>
     <div class="card-body"><div class="card-body-inner">
       <div class="ss-options">
         <div class="ss-option">
-          <span class="ss-option-title">Полное отключение &nbsp;—&nbsp; 55 €</span>
-          <span class="ss-option-desc">Система Start/Stop отключается навсегда на уровне программного обеспечения. Двигатель больше никогда не глушится на светофорах, в пробках или на коротких остановках. Нажимать кнопку при каждом запуске не нужно. Настройка сохраняется после перезапуска автомобиля.</span>
+          <div class="ss-option-header">
+            <span class="ss-option-title">Полное отключение</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
+          <span class="ss-option-desc">Система Start/Stop отключается навсегда на уровне программного обеспечения. Двигатель никогда не глушится на светофорах, в пробках или на коротких остановках. Нажимать кнопку при каждом запуске не нужно. Настройка сохраняется после перезапуска автомобиля.</span>
         </div>
         <div class="ss-option">
-          <span class="ss-option-title">Обратная логика &nbsp;—&nbsp; 45 €</span>
-          <span class="ss-option-desc">Start/Stop по умолчанию выключен. При желании его можно включить кнопкой вручную. Это противоположно заводской настройке, где система включается автоматически при каждом запуске и её нужно отключать вручную каждый раз.</span>
+          <div class="ss-option-header">
+            <span class="ss-option-title">Обратная логика</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
+          <span class="ss-option-desc">Start/Stop по умолчанию выключен. При желании его можно включить кнопкой вручную. Это противоположно заводской настройке, где система включается автоматически при каждом запуске и её нужно выключать вручную каждый раз.</span>
         </div>
         <div class="ss-option">
-          <span class="ss-option-title">Режим памяти &nbsp;—&nbsp; 45 €</span>
-          <span class="ss-option-desc">Автомобиль запоминает последнее выбранное состояние Start/Stop. Если перед выключением система была деактивирована, она останется деактивированной и при следующем запуске. Водителю больше не нужно думать о нажатии кнопки каждый раз.</span>
+          <div class="ss-option-header">
+            <span class="ss-option-title">Режим памяти</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
+          <span class="ss-option-desc">Автомобиль запоминает последнее выбранное состояние Start/Stop. Если перед выключением система была деактивирована, она останется деактивированной при следующем запуске. Водителю больше не нужно думать о нажатии кнопки каждый раз.</span>
         </div>
       </div>
     </div></div>
@@ -837,23 +862,7 @@ body {
 
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title hot">AMG меню в кластере</span></div>
-      <div class="card-right">
-        <span class="card-price hot">80 €</span>
-        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
-      </div>
-    </div>
-    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
-      <span class="desc-line">Активирует полное AMG спортивное меню в приборной панели с дополнительными экранами данных.</span>
-      <span class="desc-line">Отображает мощность двигателя и крутящий момент в процентах и абсолютных значениях, боковые перегрузки G, температуру охлаждающей жидкости и масла и другие параметры в реальном времени.</span>
-      <span class="desc-line">Экраны доступны без дополнительного оборудования, если соответствующая электроника уже установлена в автомобиле.</span>
-      <span class="desc-line note">Как правило доступно для W205, W213, W222, W166 и аналогичных моделей с COMAND или MBUX.</span>
-    </div></div></div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title hot">AMG / Maybach стартовый экран</span></div>
+      <div class="card-left"><span class="card-title hot">AMG / Maybach логотип при запуске</span></div>
       <div class="card-right">
         <span class="card-price hot">50 €</span>
         <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
@@ -864,6 +873,22 @@ body {
       <span class="desc-line">Вариант выбирается в соответствии с комплектацией и серией модели автомобиля.</span>
       <span class="desc-line">Изменения вносятся только на уровне программного обеспечения без вмешательства в оборудование.</span>
       <span class="desc-line note">Доступно для моделей с цифровой системой MBUX или COMAND Online.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AMG меню в кластере</span></div>
+      <div class="card-right">
+        <span class="card-price">80 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует полное AMG спортивное меню в приборной панели с дополнительными экранами данных.</span>
+      <span class="desc-line">Отображает мощность двигателя и крутящий момент в процентах и абсолютных значениях, боковые перегрузки G, температуру охлаждающей жидкости и масла в реальном времени.</span>
+      <span class="desc-line">Экраны доступны без дополнительного оборудования, если соответствующая электроника уже установлена.</span>
+      <span class="desc-line note">Как правило доступно для W205, W213, W222, W166 и аналогичных моделей с COMAND или MBUX.</span>
     </div></div></div>
   </div>
 
@@ -893,8 +918,8 @@ body {
     </div>
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Активирует или расширяет зоны подсветки салона, не включённые в стандартной заводской конфигурации.</span>
-      <span class="desc-line">Открываются дополнительные цвета, уровни яркости и зоны подсветки в дверях, панелях и пространстве для ног.</span>
-      <span class="desc-line">Функция активируется, если в автомобиле физически установлена система ambient, но не активирована программно.</span>
+      <span class="desc-line">Открываются дополнительные цвета, уровни яркости и зоны в дверях, панелях и пространстве для ног.</span>
+      <span class="desc-line">Функция активируется, если ambient система физически установлена, но не активирована программно.</span>
       <span class="desc-line note">Часто доступно для W205, W213, W222, W167 и других с системой 64 цветов.</span>
     </div></div></div>
   </div>
@@ -940,7 +965,7 @@ body {
     </div>
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Отключает предупреждение о непристёгнутых ремнях задних пассажиров.</span>
-      <span class="desc-line">Полезно при перевозке детей в автокресле, где датчик срабатывает даже без пассажира, или при перевозке грузов.</span>
+      <span class="desc-line">Полезно при перевозке детей в автокресле или грузов, где датчик срабатывает без пассажира.</span>
       <span class="desc-line">Изменения вносятся точечно только для задних сидений, система переднего ремня не затрагивается.</span>
     </div></div></div>
   </div>
@@ -956,7 +981,7 @@ body {
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Активирует отображение уровня жидкости AdBlue непосредственно в приборной панели как отдельный индикатор.</span>
       <span class="desc-line">Без этой функции уровень AdBlue не виден во время езды и становится известен только при критическом предупреждении.</span>
-      <span class="desc-line">После активации в кластере виден точный уровень жидкости в процентах или в графическом формате.</span>
+      <span class="desc-line">После активации в кластере виден точный уровень в процентах или в графическом формате.</span>
       <span class="desc-line note">Доступно для дизельных моделей с системой SCR приблизительно с 2014 года.</span>
     </div></div></div>
   </div>
@@ -1003,7 +1028,7 @@ body {
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Активирует полную функциональность аудиосистемы Premium или Burmester, если динамики и усилитель физически установлены, но не активированы программно.</span>
       <span class="desc-line">После активации открываются все настройки эквалайзера, зоны усилителя и звуковые профили, которые ранее были недоступны.</span>
-      <span class="desc-line">Часто бывает ситуация, когда автомобиль оснащён оборудованием Burmester, но система infotainment его не отображает. Кодирование это исправляет.</span>
+      <span class="desc-line">Часто бывает ситуация, когда автомобиль оснащён оборудованием Burmester, но система его не отображает. Кодирование это исправляет.</span>
       <span class="desc-line note">Доступно для S-class, E-class, GLE и других с пакетом Burmester или High-End Audio.</span>
     </div></div></div>
   </div>
@@ -1019,7 +1044,7 @@ body {
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Снимает заводское ограничение, блокирующее воспроизведение видео на центральном экране во время движения.</span>
       <span class="desc-line">После разблокировки видео работает полноценно даже в движении.</span>
-      <span class="desc-line">Изменения вносятся только на программном уровне, без какого-либо вмешательства в электропроводку.</span>
+      <span class="desc-line">Изменения вносятся только на программном уровне, без вмешательства в электропроводку.</span>
       <span class="desc-line note">Доступно для систем COMAND Online и MBUX.</span>
     </div></div></div>
   </div>
@@ -1160,49 +1185,56 @@ body {
     </div></div></div>
   </div>
 
-  <div class="card">
-    <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title">Диагностика и сброс ошибок</span></div>
-      <div class="card-right">
-        <span class="card-price free">Бесплатно</span>
-        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
-      </div>
-    </div>
-    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
-      <span class="desc-line">Полная диагностика автомобиля профессиональным оборудованием MB Star.</span>
-      <span class="desc-line">Проверяются все системы: двигатель, трансмиссия, подушки безопасности, ABS, ESP, климат-контроль, электронные модули и другие.</span>
-      <span class="desc-line">Все найденные коды ошибок считываются, анализируются и при необходимости сбрасываются.</span>
-    </div></div></div>
-  </div>
-
 </section>
 
-<!-- ══════════════════════════════════════════
-     EN
-══════════════════════════════════════════ -->
+<!-- ══════════ EN ══════════ -->
 <section class="price-section" id="prices-en" style="display:none">
   <p class="sec-label">Pricing</p>
 
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title free-title">Diagnostics and error clearing</span></div>
+      <div class="card-right">
+        <span class="card-price free">Free</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Full vehicle diagnostics with professional MB Star equipment.</span>
+      <span class="desc-line">All systems checked: engine, transmission, airbags, ABS, ESP, climate control, electronic modules and others.</span>
+      <span class="desc-line">All found fault codes are read, reviewed and cleared where appropriate.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title hot">Start / Stop</span></div>
       <div class="card-right">
-        <span class="card-price hot">from 45 €</span>
+        <span class="card-price hot">55 €</span>
         <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
       </div>
     </div>
     <div class="card-body"><div class="card-body-inner">
       <div class="ss-options">
         <div class="ss-option">
-          <span class="ss-option-title">Full disable &nbsp;—&nbsp; 55 €</span>
+          <div class="ss-option-header">
+            <span class="ss-option-title">Full disable</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
           <span class="ss-option-desc">The Start/Stop system is permanently disabled at software level. The engine never shuts off at traffic lights, in traffic or during short stops. No need to press the button on every start. The setting survives vehicle restarts.</span>
         </div>
         <div class="ss-option">
-          <span class="ss-option-title">Reverse logic &nbsp;—&nbsp; 45 €</span>
+          <div class="ss-option-header">
+            <span class="ss-option-title">Reverse logic</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
           <span class="ss-option-desc">Start/Stop is off by default. If needed, it can be manually activated with the button. This is the opposite of the factory setting where the system activates automatically every time and must be turned off manually each drive.</span>
         </div>
         <div class="ss-option">
-          <span class="ss-option-title">Memory mode &nbsp;—&nbsp; 45 €</span>
+          <div class="ss-option-header">
+            <span class="ss-option-title">Memory mode</span>
+            <span class="ss-option-price">55 €</span>
+          </div>
           <span class="ss-option-desc">The car remembers the last selected Start/Stop state. If the system was deactivated before switching off, it remains deactivated on the next start. The driver no longer needs to think about pressing the button every time.</span>
         </div>
       </div>
@@ -1211,23 +1243,7 @@ body {
 
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title hot">AMG cluster menu</span></div>
-      <div class="card-right">
-        <span class="card-price hot">80 €</span>
-        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
-      </div>
-    </div>
-    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
-      <span class="desc-line">Activates the full AMG sport menu in the instrument cluster with additional data screens.</span>
-      <span class="desc-line">Displays engine power and torque in percentages and absolute values, lateral G-force, coolant temperature, oil temperature and other parameters in real time.</span>
-      <span class="desc-line">Screens are available without additional hardware if the relevant electronics are already present in the vehicle.</span>
-      <span class="desc-line note">Generally available for W205, W213, W222, W166 and similar models with COMAND or MBUX.</span>
-    </div></div></div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title hot">AMG / Maybach startup screen</span></div>
+      <div class="card-left"><span class="card-title hot">AMG / Maybach logo on startup</span></div>
       <div class="card-right">
         <span class="card-price hot">50 €</span>
         <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
@@ -1243,6 +1259,22 @@ body {
 
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AMG cluster menu</span></div>
+      <div class="card-right">
+        <span class="card-price">80 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates the full AMG sport menu in the instrument cluster with additional data screens.</span>
+      <span class="desc-line">Displays engine power and torque in percentages and absolute values, lateral G-force, coolant temperature, oil temperature and other parameters in real time.</span>
+      <span class="desc-line">Screens are available without additional hardware if the relevant electronics are already present.</span>
+      <span class="desc-line note">Generally available for W205, W213, W222, W166 and similar models with COMAND or MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">AMG dashboard design</span></div>
       <div class="card-right">
         <span class="card-price">42 €</span>
@@ -1252,7 +1284,7 @@ body {
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Activates AMG-style graphics in the instrument cluster and central display.</span>
       <span class="desc-line">Gauge layout switches to a sport arrangement, AMG colour scheme and background graphics are enabled.</span>
-      <span class="desc-line">The result visually matches a full AMG Line specification, even if the car does not have one from the factory.</span>
+      <span class="desc-line">The result visually matches a full AMG Line specification, even without one from the factory.</span>
       <span class="desc-line note">Available for models with a digital cluster and MBUX system.</span>
     </div></div></div>
   </div>
@@ -1439,7 +1471,7 @@ body {
     </div>
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Configures the automatic recirculation mode parameters in the air conditioning system.</span>
-      <span class="desc-line">The air conditioning automatically switches to internal air recirculation in traffic or when strong odours are detected outside.</span>
+      <span class="desc-line">The air conditioning automatically switches to internal air in traffic or when strong odours are detected outside.</span>
       <span class="desc-line">The recirculation logic can be adjusted to the driver's preferences.</span>
     </div></div></div>
   </div>
@@ -1534,21 +1566,6 @@ body {
     </div></div></div>
   </div>
 
-  <div class="card">
-    <div class="card-header" onclick="toggle(this)">
-      <div class="card-left"><span class="card-title">Diagnostics and error clearing</span></div>
-      <div class="card-right">
-        <span class="card-price free">Free</span>
-        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
-      </div>
-    </div>
-    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
-      <span class="desc-line">Full vehicle diagnostics with professional MB Star equipment.</span>
-      <span class="desc-line">All systems checked: engine, transmission, airbags, ABS, ESP, climate control, electronic modules and others.</span>
-      <span class="desc-line">All found fault codes are read, reviewed and cleared where appropriate.</span>
-    </div></div></div>
-  </div>
-
 </section>
 
 <!-- COMPAT -->
@@ -1567,12 +1584,10 @@ body {
 </section>
 
 <script>
-/* ── TOGGLE ── */
 function toggle(header) {
   var card = header.parentElement;
   var body = card.querySelector('.card-body');
   var isOpen = card.classList.contains('open');
-
   if (isOpen) {
     body.style.maxHeight = body.scrollHeight + 'px';
     requestAnimationFrame(function() {
@@ -1587,13 +1602,12 @@ function toggle(header) {
     body.style.maxHeight = body.scrollHeight + 'px';
     body.style.opacity = '1';
     body.addEventListener('transitionend', function onEnd() {
-      body.style.maxHeight = 'none';
+      if (card.classList.contains('open')) body.style.maxHeight = 'none';
       body.removeEventListener('transitionend', onEnd);
     }, { once: true });
   }
 }
 
-/* ── LANG ── */
 var groups = {
   lv: ['badge-lv','h1-lv','prices-lv','compat-lv'],
   ru: ['badge-ru','h1-ru','prices-ru','compat-ru'],
@@ -1614,9 +1628,7 @@ function setLang(lang) {
     if(el) el.style.display = 'block';
   });
   document.documentElement.lang = lang;
-
-  /* close all open cards on lang switch */
-  document.querySelectorAll('.card.open').forEach(function(card) {
+  document.querySelectorAll('.card.open').forEach(function(card){
     var body = card.querySelector('.card-body');
     body.style.maxHeight = '0px';
     body.style.opacity = '0';
