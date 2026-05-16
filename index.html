@@ -19,29 +19,44 @@ body {
 }
 
 :lang(ru) .card-title,
-:lang(ru) .card-desc-line,
 :lang(ru) .ss-option-title,
 :lang(ru) .ss-option-desc,
 :lang(ru) .desc-line,
 :lang(ru) .sec-label,
 :lang(ru) .compat p,
-:lang(ru) .btn {
+:lang(ru) .btn,
+:lang(ru) .hero-location,
+:lang(ru) .hero-sub-word {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* NAV */
+/* ── NAV ── */
 .lang-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex;
-  justify-content: flex-end;
-  padding: 12px 24px;
-  background: rgba(0,0,0,0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 48px;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid #0d0d0d;
 }
+
+.nav-phone {
+  text-decoration: none;
+  color: #2a2a2a;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.25s;
+}
+.nav-phone:hover { color: #4fd8e8; }
+
 .lang-switcher { display: flex; gap: 4px; }
 .lang-btn {
   background: transparent;
@@ -58,96 +73,240 @@ body {
   border-radius: 2px;
 }
 .lang-btn.active, .lang-btn:hover {
-  border-color: rgba(79,216,232,0.5);
+  border-color: rgba(79,216,232,0.45);
   color: #4fd8e8;
-  box-shadow: 0 0 12px rgba(79,216,232,0.07);
 }
 
-/* HERO */
+/* ── HERO ── */
 .hero {
-  padding: 110px 20px 60px;
+  padding: 88px 20px 64px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.hero-glow {
+
+/* BG GLOWS */
+.glow-center {
   position: absolute;
-  top: 0; left: 50%;
+  top: -60px; left: 50%;
   transform: translateX(-50%);
-  width: 700px; height: 480px;
-  background: radial-gradient(ellipse at 50% 15%,
-    rgba(79,216,232,0.065) 0%,
-    rgba(79,216,232,0.02) 40%,
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse at 50% 30%,
+    rgba(79,216,232,0.09) 0%,
+    rgba(79,216,232,0.035) 30%,
+    rgba(79,216,232,0.008) 55%,
+    transparent 72%);
+  pointer-events: none;
+  animation: glowBreath 6s ease-in-out infinite;
+}
+.glow-left {
+  position: absolute;
+  top: 20%; left: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(ellipse,
+    rgba(79,216,232,0.04) 0%,
+    transparent 65%);
+  pointer-events: none;
+  animation: glowBreath 8s ease-in-out infinite reverse;
+}
+.glow-right {
+  position: absolute;
+  top: 10%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(ellipse,
+    rgba(79,216,232,0.035) 0%,
+    transparent 65%);
+  pointer-events: none;
+  animation: glowBreath 7s ease-in-out infinite 1s;
+}
+.glow-bottom {
+  position: absolute;
+  bottom: -40px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 200px;
+  background: radial-gradient(ellipse,
+    rgba(79,216,232,0.04) 0%,
     transparent 70%);
   pointer-events: none;
 }
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(79,216,232,0.18);
-  background: rgba(79,216,232,0.04);
-  color: rgba(79,216,232,0.65);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: 2px;
-  margin-bottom: 28px;
+@keyframes glowBreath {
+  0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.05); }
 }
-.badge-dot {
-  width: 4px; height: 4px;
-  background: #4fd8e8;
-  border-radius: 50%;
-  animation: blink 2.5s ease-in-out infinite;
-  box-shadow: 0 0 6px rgba(79,216,232,0.7);
-  flex-shrink: 0;
+.glow-left, .glow-right, .glow-bottom {
+  animation-name: glowBreathSimple;
 }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+@keyframes glowBreathSimple {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
 
-.hero h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(44px, 13vw, 130px);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
+/* HERO CONTENT */
+.hero-content {
   position: relative;
   z-index: 1;
-  text-transform: uppercase;
-  word-break: break-word;
-  overflow-wrap: break-word;
 }
-.hero-sub {
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
+}
+.hero-line-dec {
+  width: 32px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79,216,232,0.3));
+}
+.hero-line-dec.right {
+  background: linear-gradient(90deg, rgba(79,216,232,0.3), transparent);
+}
+.hero-eyebrow-text {
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(79,216,232,0.4);
+  font-family: 'Inter', sans-serif;
+}
+
+/* MAIN TITLE */
+.hero-title-wrap {
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.25s forwards;
+}
+
+.hero-mercedes {
   display: block;
-  background: linear-gradient(135deg, #4fd8e8 0%, #2ab8cc 50%, #4fd8e8 100%);
-  background-size: 200% 200%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 22vw, 200px);
+  line-height: 0.85;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* subtle shine sweep on MERCEDES */
+.hero-mercedes::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 30%,
+    rgba(255,255,255,0.06) 50%,
+    transparent 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineSweep 5s ease-in-out infinite 1s;
+  pointer-events: none;
+}
+@keyframes shineSweep {
+  0%,100% { background-position: 200% 0; }
+  40%,60% { background-position: -200% 0; }
+}
+
+.hero-coding-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+.hero-dash {
+  width: 28px; height: 1px;
+  background: rgba(79,216,232,0.25);
+  flex-shrink: 0;
+}
+
+.hero-sub-word {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 6.5vw, 62px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #4fd8e8 0%, #2ab8cc 40%, #6ee8f4 70%, #4fd8e8 100%);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 4s ease-in-out infinite;
+  animation: gradShift 4s ease-in-out infinite;
+  position: relative;
+  filter: drop-shadow(0 0 18px rgba(79,216,232,0.22));
 }
-@keyframes shimmer {
+@keyframes gradShift {
   0%,100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
-.hero-line {
-  width: 36px; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(79,216,232,0.35), transparent);
-  margin: 28px auto 0;
+
+/* LOCATION */
+.hero-location {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.55s forwards;
+}
+.hero-location-dot {
+  width: 3px; height: 3px;
+  background: rgba(79,216,232,0.4);
+  border-radius: 50%;
+}
+.hero-location-text {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* DIVIDER */
+.section-divider {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0e0e0e);
+}
+.section-divider-line.left {
+  background: linear-gradient(90deg, #0e0e0e, transparent);
 }
 
 /* PRICE SECTION */
 .price-section {
   max-width: 680px;
-  margin: 48px auto 0;
+  margin: 40px auto 0;
   padding: 0 20px;
 }
 .sec-label {
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(79,216,232,0.3);
+  color: rgba(79,216,232,0.28);
   margin-bottom: 4px;
+  font-family: 'Inter', sans-serif;
 }
 
 /* CARD */
@@ -161,13 +320,13 @@ body {
   left: 0; top: 0; bottom: 0;
   width: 1px;
   background: transparent;
-  transition: background 0.3s;
+  transition: background 0.35s;
   pointer-events: none;
 }
 .card:hover::before {
-  background: linear-gradient(180deg, transparent, rgba(79,216,232,0.25), transparent);
+  background: linear-gradient(180deg, transparent, rgba(79,216,232,0.2), transparent);
 }
-.card:hover { background: rgba(79,216,232,0.016); }
+.card:hover { background: rgba(79,216,232,0.014); }
 
 .card-header {
   display: flex;
@@ -179,19 +338,17 @@ body {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
-.card-left {
-  min-width: 0;
-  flex: 1;
-}
+.card-left { min-width: 0; flex: 1; }
 .card-title {
   font-size: 13px;
   font-weight: 500;
-  color: #b0cdd2;
+  color: #a8c8ce;
   line-height: 1.3;
   letter-spacing: 0.01em;
+  font-family: 'Inter', sans-serif;
 }
-.card-title.hot { color: #ddeef1; }
-.card-title.free-title { color: #4a8a92; }
+.card-title.hot { color: #d8ecf0; }
+.card-title.free-title { color: #3d7a82; }
 
 .card-right {
   display: flex;
@@ -202,44 +359,43 @@ body {
 .card-price {
   font-size: 13px;
   font-weight: 500;
-  color: #ccc;
+  color: #bbb;
   white-space: nowrap;
   letter-spacing: 0.02em;
+  font-family: 'Inter', sans-serif;
 }
 .card-price.hot {
   color: #4fd8e8;
-  animation: glowPulse 3s ease-in-out infinite;
+  animation: pricePulse 3.5s ease-in-out infinite;
 }
 .card-price.free {
-  color: rgba(79,216,232,0.5);
+  color: rgba(79,216,232,0.45);
   font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
 }
-@keyframes glowPulse {
+@keyframes pricePulse {
   0%,100% { text-shadow: 0 0 0 rgba(79,216,232,0); }
-  50% { text-shadow: 0 0 14px rgba(79,216,232,0.22); }
+  50% { text-shadow: 0 0 12px rgba(79,216,232,0.2); }
 }
 
 /* ARROW */
 .arrow {
   width: 18px; height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 .arrow svg {
   width: 10px; height: 10px;
-  stroke: rgba(79,216,232,0.28);
+  stroke: rgba(79,216,232,0.22);
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: stroke 0.25s;
 }
-.card-header:hover .arrow svg { stroke: rgba(79,216,232,0.6); }
+.card-header:hover .arrow svg { stroke: rgba(79,216,232,0.55); }
 .card.open .arrow { transform: rotate(180deg); }
 .card.open .arrow svg { stroke: #4fd8e8; }
 
@@ -255,7 +411,7 @@ body {
 
 .desc-block {
   padding-left: 14px;
-  border-left: 1px solid rgba(79,216,232,0.09);
+  border-left: 1px solid rgba(79,216,232,0.08);
   display: flex;
   flex-direction: column;
   gap: 7px;
@@ -263,33 +419,28 @@ body {
 .desc-line {
   font-size: 11.5px;
   font-weight: 300;
-  color: #363636;
+  color: #333;
   line-height: 1.65;
+  font-family: 'Inter', sans-serif;
 }
 .desc-line.note {
-  color: #1e4048;
+  color: #1a3d44;
   font-size: 11px;
 }
 
-/* START-STOP OPTIONS */
-.ss-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+/* SS OPTIONS */
+.ss-options { display: flex; flex-direction: column; gap: 10px; }
 .ss-option {
   padding: 14px 16px;
-  border: 1px solid #111;
+  border: 1px solid #101010;
   border-radius: 3px;
-  background: rgba(255,255,255,0.01);
+  background: rgba(255,255,255,0.008);
   transition: border-color 0.2s, background 0.2s;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: flex; flex-direction: column; gap: 6px;
 }
 .ss-option:hover {
   border-color: rgba(79,216,232,0.1);
-  background: rgba(79,216,232,0.018);
+  background: rgba(79,216,232,0.015);
 }
 .ss-option-header {
   display: flex;
@@ -298,11 +449,12 @@ body {
   gap: 8px;
 }
 .ss-option-title {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 500;
-  color: rgba(79,216,232,0.7);
-  letter-spacing: 0.07em;
+  color: rgba(79,216,232,0.6);
+  letter-spacing: 0.09em;
   text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
 }
 .ss-option-price {
   font-size: 13px;
@@ -310,12 +462,14 @@ body {
   color: #4fd8e8;
   white-space: nowrap;
   flex-shrink: 0;
+  font-family: 'Inter', sans-serif;
 }
 .ss-option-desc {
   font-size: 11.5px;
   font-weight: 300;
-  color: #363636;
+  color: #333;
   line-height: 1.65;
+  font-family: 'Inter', sans-serif;
 }
 
 /* COMPAT */
@@ -326,17 +480,18 @@ body {
 }
 .compat p {
   font-size: 11px;
-  color: #222;
+  color: #1e1e1e;
   line-height: 1.65;
   padding-left: 14px;
-  border-left: 1px solid rgba(79,216,232,0.1);
+  border-left: 1px solid rgba(79,216,232,0.08);
+  font-family: 'Inter', sans-serif;
 }
 
 /* CONTACT */
 .contact-section {
   max-width: 680px;
   margin: 44px auto 0;
-  padding: 0 20px 72px;
+  padding: 0 20px 80px;
 }
 .contact-grid {
   display: grid;
@@ -360,13 +515,13 @@ body {
   transition: all 0.25s;
 }
 .btn-call { background: #4fd8e8; color: #000; }
-.btn-call:hover { background: #6de2f0; box-shadow: 0 0 24px rgba(79,216,232,0.22); }
-.btn-tg { background: transparent; border: 1px solid #161616; color: #3a3a3a; }
-.btn-tg:hover { border-color: rgba(79,216,232,0.28); color: #4fd8e8; }
+.btn-call:hover { background: #6de2f0; box-shadow: 0 0 28px rgba(79,216,232,0.2); }
+.btn-tg { background: transparent; border: 1px solid #141414; color: #333; }
+.btn-tg:hover { border-color: rgba(79,216,232,0.25); color: #4fd8e8; }
 
 /* MOBILE */
 @media(max-width:600px) {
-  .hero { padding: 96px 16px 48px; }
+  .hero { padding: 72px 16px 56px; min-height: 360px; }
   .price-section { padding: 0 16px; }
   .compat { padding: 0 16px; }
   .contact-section { padding: 0 16px 64px; }
@@ -374,12 +529,17 @@ body {
   .card-title { font-size: 12.5px; }
   .card-price { font-size: 12px; }
   .ss-option { padding: 12px 13px; }
+  .hero-eyebrow-text { letter-spacing: 0.2em; }
+  .glow-center { width: 600px; height: 400px; }
+  .glow-left, .glow-right { display: none; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <div class="lang-bar">
+  <a href="tel:+37120064457" class="nav-phone">+371 200 644 57</a>
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('lv')">LV</button>
     <button class="lang-btn" onclick="setLang('ru')">RU</button>
@@ -389,24 +549,53 @@ body {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-glow"></div>
+  <div class="glow-center"></div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="glow-bottom"></div>
 
-  <div id="badge-lv" class="badge"><span class="badge-dot"></span>Tikai Mercedes-Benz</div>
-  <div id="badge-ru" class="badge" style="display:none"><span class="badge-dot"></span>Только Mercedes-Benz</div>
-  <div id="badge-en" class="badge" style="display:none"><span class="badge-dot"></span>Mercedes-Benz only</div>
+  <div class="hero-content">
 
-  <h1 id="h1-lv">MERCEDES<br><span class="hero-sub">KODĒŠANA</span></h1>
-  <h1 id="h1-ru" style="display:none">MERCEDES<br><span class="hero-sub" style="font-size:clamp(36px,10vw,110px)">КОДИРОВАНИЕ</span></h1>
-  <h1 id="h1-en" style="display:none">MERCEDES<br><span class="hero-sub">CODING</span></h1>
+    <!-- eyebrow -->
+    <div class="hero-eyebrow">
+      <span class="hero-line-dec"></span>
+      <span id="eyebrow-lv" class="hero-eyebrow-text">Mercedes-Benz</span>
+      <span id="eyebrow-ru" class="hero-eyebrow-text" style="display:none">Mercedes-Benz</span>
+      <span id="eyebrow-en" class="hero-eyebrow-text" style="display:none">Mercedes-Benz</span>
+      <span class="hero-line-dec right"></span>
+    </div>
 
-  <div class="hero-line"></div>
+    <!-- main title -->
+    <div class="hero-title-wrap">
+      <span class="hero-mercedes" data-text="MERCEDES" id="main-mercedes-lv">MERCEDES</span>
+      <span class="hero-mercedes" data-text="MERCEDES" id="main-mercedes-ru" style="display:none">MERCEDES</span>
+      <span class="hero-mercedes" data-text="MERCEDES" id="main-mercedes-en" style="display:none">MERCEDES</span>
+
+      <div class="hero-coding-row">
+        <span class="hero-dash"></span>
+        <span id="sub-lv" class="hero-sub-word">KODĒŠANA</span>
+        <span id="sub-ru" class="hero-sub-word" style="display:none; font-size:clamp(18px,5.5vw,52px)">КОДИРОВАНИЕ</span>
+        <span id="sub-en" class="hero-sub-word" style="display:none">CODING</span>
+        <span class="hero-dash"></span>
+      </div>
+    </div>
+
+    <!-- location -->
+    <div class="hero-location">
+      <span class="hero-location-dot"></span>
+      <span id="loc-lv" class="hero-location-text">Latvija &nbsp;&middot;&nbsp; Rīga</span>
+      <span id="loc-ru" class="hero-location-text" style="display:none">Латвия &nbsp;&middot;&nbsp; Рига</span>
+      <span id="loc-en" class="hero-location-text" style="display:none">Latvia &nbsp;&middot;&nbsp; Riga</span>
+      <span class="hero-location-dot"></span>
+    </div>
+
+  </div>
 </section>
 
 <!-- ══════════ LV ══════════ -->
 <section class="price-section" id="prices-lv">
   <p class="sec-label">Cenas</p>
 
-  <!-- 1. DIAGNOSTIKA -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title free-title">Diagnostika un kļūdu dzēšana</span></div>
@@ -422,7 +611,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 2. START/STOP -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title hot">Start / Stop</span></div>
@@ -458,7 +646,6 @@ body {
     </div></div>
   </div>
 
-  <!-- 3. AMG/MAYBACH LOGO -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title hot">AMG / Maybach logotips iedarbinot</span></div>
@@ -475,7 +662,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 4. AMG MENU -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">AMG izvēlne klasterī</span></div>
@@ -492,7 +678,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 5. AMG DIZAINS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">AMG auto dizains</span></div>
@@ -509,7 +694,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 6. AMBIENT -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Ambient apgaismojums</span></div>
@@ -526,7 +710,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 7. WELCOME LIGHTS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Sveiciena gaismas</span></div>
@@ -542,7 +725,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 8. JOSTA PRIEKSHA -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Drošības jostas brīdinājums</span></div>
@@ -559,7 +741,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 9. JOSTA AIZMUGURE -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Aizmugurējo jostu brīdinājums</span></div>
@@ -575,7 +756,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 10. ADBLUE -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">AdBlue līmeņa displejs</span></div>
@@ -592,7 +772,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 11. ANTI-THEFT -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Anti-Theft signalizācija</span></div>
@@ -609,7 +788,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 12. RIEPU SPIEDIENS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Riepu spiediena sistēma</span></div>
@@ -625,7 +803,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 13. BURMESTER -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Premium Sound / Burmester</span></div>
@@ -642,7 +819,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 14. VIDEO -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Video kustības laikā</span></div>
@@ -659,7 +835,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 15. DRL -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Aizmugurējās gaismas ar DRL</span></div>
@@ -676,7 +851,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 16. ANALOGS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Analogais ekrāns</span></div>
@@ -692,7 +866,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 17. RECIRKULACIJA -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Gaisa recirkulācija</span></div>
@@ -708,7 +881,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 18. PARKTRONIC SOUND -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Parktronic skaņas paplašinājums</span></div>
@@ -724,7 +896,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 19. PARKTRONIC VOL -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Parktronic skaļums</span></div>
@@ -740,7 +911,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 20. DEGVIELA S-CLASS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Degvielas displejs (S-class)</span></div>
@@ -756,7 +926,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 21. PAGRIEZ -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Viena pieskāriena pagrieziena rādītājs</span></div>
@@ -772,7 +941,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 22. AUX -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Aux kontrole</span></div>
@@ -788,7 +956,6 @@ body {
     </div></div></div>
   </div>
 
-  <!-- 23. MERVIENIBAS -->
   <div class="card">
     <div class="card-header" onclick="toggle(this)">
       <div class="card-left"><span class="card-title">Mērvienību maiņa</span></div>
@@ -1346,7 +1513,7 @@ body {
     </div>
     <div class="card-body"><div class="card-body-inner"><div class="desc-block">
       <span class="desc-line">Disables the warning for unfastened rear passenger seatbelts.</span>
-      <span class="desc-line">Useful when transporting children in car seats where the sensor triggers even without a passenger, or when carrying cargo.</span>
+      <span class="desc-line">Useful when transporting children in car seats where the sensor triggers without a passenger, or when carrying cargo.</span>
       <span class="desc-line">Changes are applied to rear seats only, the front belt system is not affected.</span>
     </div></div></div>
   </div>
@@ -1609,25 +1776,42 @@ function toggle(header) {
 }
 
 var groups = {
-  lv: ['badge-lv','h1-lv','prices-lv','compat-lv'],
-  ru: ['badge-ru','h1-ru','prices-ru','compat-ru'],
-  en: ['badge-en','h1-en','prices-en','compat-en']
+  lv: ['prices-lv','compat-lv'],
+  ru: ['prices-ru','compat-ru'],
+  en: ['prices-en','compat-en']
+};
+var heroEls = {
+  lv: ['eyebrow-lv','main-mercedes-lv','sub-lv','loc-lv'],
+  ru: ['eyebrow-ru','main-mercedes-ru','sub-ru','loc-ru'],
+  en: ['eyebrow-en','main-mercedes-en','sub-en','loc-en']
 };
 
 function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
   document.querySelector('.lang-btn[onclick="setLang(\''+lang+'\')"]').classList.add('active');
+
   ['lv','ru','en'].forEach(function(l){
     groups[l].forEach(function(id){
       var el = document.getElementById(id);
       if(el) el.style.display = 'none';
     });
+    heroEls[l].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.style.display = 'none';
+    });
   });
+
   groups[lang].forEach(function(id){
     var el = document.getElementById(id);
     if(el) el.style.display = 'block';
   });
+  heroEls[lang].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.style.display = '';
+  });
+
   document.documentElement.lang = lang;
+
   document.querySelectorAll('.card.open').forEach(function(card){
     var body = card.querySelector('.card-body');
     body.style.maxHeight = '0px';
