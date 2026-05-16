@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercedes Kodēšana | Rīga</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #000; }
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* RU FONT OVERRIDE */
+:lang(ru) .card-title,
+:lang(ru) .card-desc-line,
+:lang(ru) .sec-label,
+:lang(ru) .compat p,
+:lang(ru) .btn {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ── NAV ── */
+.lang-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 24px;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #0d0d0d;
+}
+.lang-switcher { display: flex; gap: 4px; }
+.lang-btn {
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  color: #444;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  cursor: pointer;
+  transition: all 0.25s;
+  border-radius: 2px;
+}
+.lang-btn.active, .lang-btn:hover {
+  border-color: rgba(79,216,232,0.5);
+  color: #4fd8e8;
+  box-shadow: 0 0 12px rgba(79,216,232,0.08);
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 110px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse at 50% 20%,
+    rgba(79,216,232,0.07) 0%,
+    rgba(79,216,232,0.025) 35%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(79,216,232,0.2);
+  background: rgba(79,216,232,0.04);
+  color: rgba(79,216,232,0.7);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+}
+.badge-dot {
+  width: 4px; height: 4px;
+  background: #4fd8e8;
+  border-radius: 50%;
+  animation: blink 2.5s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(79,216,232,0.6);
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 14vw, 130px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+}
+.hero-sub {
+  display: block;
+  background: linear-gradient(135deg, #4fd8e8 0%, #2ab8cc 50%, #4fd8e8 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79,216,232,0.4), transparent);
+  margin: 28px auto 0;
+}
+
+/* ── PRICE SECTION ── */
+.price-section {
+  max-width: 680px;
+  margin: 48px auto 0;
+  padding: 0 20px;
+}
+.sec-label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(79,216,232,0.35);
+  margin-bottom: 4px;
+}
+
+/* ── CARD ── */
+.card {
+  border-bottom: 1px solid #0e0e0e;
+  transition: background 0.2s;
+  position: relative;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: transparent;
+  transition: background 0.3s;
+}
+.card:hover::before {
+  background: linear-gradient(180deg, transparent, rgba(79,216,232,0.3), transparent);
+}
+.card:hover {
+  background: rgba(79,216,232,0.018);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #b8d4d8;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+.card-title.hot { color: #e8f4f6; }
+
+.card-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.card-price {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.card-price.hot {
+  color: #4fd8e8;
+}
+.card-price.free {
+  color: rgba(79,216,232,0.6);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+/* ARROW */
+.arrow {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow svg {
+  width: 10px;
+  height: 10px;
+  stroke: rgba(79,216,232,0.35);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.25s;
+}
+.card-header:hover .arrow svg { stroke: rgba(79,216,232,0.7); }
+.card.open .arrow { transform: rotate(180deg); }
+.card.open .arrow svg { stroke: #4fd8e8; }
+
+/* EXPANDABLE BODY */
+.card-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s ease;
+  opacity: 0;
+}
+.card.open .card-body {
+  opacity: 1;
+}
+.card-body-inner {
+  padding: 0 0 20px 0;
+}
+
+.desc-block {
+  padding-left: 14px;
+  border-left: 1px solid rgba(79,216,232,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* START-STOP SPECIAL: sub-options */
+.ss-options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 2px;
+}
+.ss-option {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+  border: 1px solid #111;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.012);
+  transition: border-color 0.2s, background 0.2s;
+}
+.ss-option:hover {
+  border-color: rgba(79,216,232,0.12);
+  background: rgba(79,216,232,0.02);
+}
+.ss-option-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: #4fd8e8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ss-option-desc {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: #383838;
+  line-height: 1.65;
+}
+
+.desc-line {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: #363636;
+  line-height: 1.65;
+}
+.desc-line.note {
+  color: #2a4a50;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+/* ── COMPAT ── */
+.compat {
+  max-width: 680px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+}
+.compat p {
+  font-size: 11px;
+  color: #252525;
+  line-height: 1.65;
+  padding-left: 14px;
+  border-left: 1px solid rgba(79,216,232,0.12);
+  letter-spacing: 0.01em;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  max-width: 680px;
+  margin: 44px auto 0;
+  padding: 0 20px 72px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media(max-width:440px){ .contact-grid { grid-template-columns: 1fr; } }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-call {
+  background: #4fd8e8;
+  color: #000;
+}
+.btn-call:hover {
+  background: #6de2f0;
+  box-shadow: 0 0 24px rgba(79,216,232,0.25);
+}
+.btn-tg {
+  background: transparent;
+  border: 1px solid #161616;
+  color: #444;
+}
+.btn-tg:hover {
+  border-color: rgba(79,216,232,0.3);
+  color: #4fd8e8;
+  box-shadow: 0 0 16px rgba(79,216,232,0.06);
+}
+
+/* ── MOBILE ── */
+@media(max-width:600px) {
+  .hero { padding: 100px 20px 48px; }
+  .price-section { padding: 0 16px; }
+  .compat { padding: 0 16px; }
+  .contact-section { padding: 0 16px 64px; }
+  .card-header { padding: 18px 0; }
+  .card-title { font-size: 12.5px; }
+  .card-price { font-size: 12px; }
+}
+
+/* GLOW PULSE on hot items */
+@keyframes glowPulse {
+  0%,100% { text-shadow: 0 0 8px rgba(79,216,232,0); }
+  50% { text-shadow: 0 0 16px rgba(79,216,232,0.2); }
+}
+.card-price.hot {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('lv')">LV</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+
+  <div id="badge-lv" class="badge"><span class="badge-dot"></span>Tikai Mercedes-Benz</div>
+  <div id="badge-ru" class="badge" style="display:none"><span class="badge-dot"></span>Только Mercedes-Benz</div>
+  <div id="badge-en" class="badge" style="display:none"><span class="badge-dot"></span>Mercedes-Benz only</div>
+
+  <h1 id="h1-lv">MERCEDES<br><span class="hero-sub">KODĒŠANA</span></h1>
+  <h1 id="h1-ru" style="display:none">MERCEDES<br><span class="hero-sub">КОДИРОВАНИЕ</span></h1>
+  <h1 id="h1-en" style="display:none">MERCEDES<br><span class="hero-sub">CODING</span></h1>
+
+  <div class="hero-line"></div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     LV
+══════════════════════════════════════════ -->
+<section class="price-section" id="prices-lv">
+  <p class="sec-label">Cenas</p>
+
+  <!-- START/STOP — special expandable -->
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left">
+        <span class="card-title hot">Start / Stop</span>
+      </div>
+      <div class="card-right">
+        <span class="card-price hot">no 45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-body-inner">
+        <div class="ss-options">
+          <div class="ss-option">
+            <span class="ss-option-title">Pilnīga atslēgšana &nbsp;—&nbsp; 55 €</span>
+            <span class="ss-option-desc">Start/Stop sistēma tiek izslēgta uz visiem laikiem programmatūras līmenī. Motors nekad neapstājas pie luksoforiem, sastrēgumos vai īsās stāvvietās. Nav nepieciešams nospiest nevienu pogu. Stāvoklis saglabājas pat pēc automašīnas restartēšanas.</span>
+          </div>
+          <div class="ss-option">
+            <span class="ss-option-title">Apgrieztā loģika &nbsp;—&nbsp; 45 €</span>
+            <span class="ss-option-desc">Start/Stop pēc noklusējuma ir izslēgts. Ja nepieciešams, to var aktivizēt ar pogu manuāli. Tas ir pretēji rūpnīcas iestatījumam, kur sistēma katru reizi ieslēdzas automātiski un jāizslēdz manuāli.</span>
+          </div>
+          <div class="ss-option">
+            <span class="ss-option-title">Atmiņas režīms &nbsp;—&nbsp; 45 €</span>
+            <span class="ss-option-desc">Automašīna atceras pēdējo izvēlēto Start/Stop stāvokli. Ja pirms izslēgšanas sistēma bija deaktivizēta, tā paliek deaktivizēta arī nākamajā braucienā. Vadītājam vairs nav jādomā par pogas nospiešanu katrā reizē.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG izvēlne klasterī</span></div>
+      <div class="card-right">
+        <span class="card-price hot">80 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē pilnu AMG sporta izvēlni instrumentu klasterī ar papildu datu ekrāniem.</span>
+      <span class="desc-line">Displejs rāda dzinēja jaudu un griezes momentu procentos un absolūtās vērtībās, sānu G-spēku, dzesēšanas šķidruma un eļļas temperatūru un citus parametrus reāllaikā.</span>
+      <span class="desc-line">Ekrāni ir pieejami bez papildu aparatūras uzstādīšanas, ja attiecīgā elektronika jau ir automašīnā.</span>
+      <span class="desc-line note">Parasti pieejams W205, W213, W222, W166 un līdzīgiem modeļiem ar COMAND vai MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG / Maybach startekrāns</span></div>
+      <div class="card-right">
+        <span class="card-price hot">50 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Pie katras iedarbināšanas displejs rāda AMG vai Maybach logotipu ar animāciju.</span>
+      <span class="desc-line">Variants tiek izvēlēts atbilstoši automašīnas komplektācijai un modeļa sērijai.</span>
+      <span class="desc-line">Izmaiņas veiktas tikai programmatūras līmenī bez iejaukšanās aparatūrā.</span>
+      <span class="desc-line note">Pieejams modeļiem ar digitālo MBUX vai COMAND Online sistēmu.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AMG auto dizains</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē AMG stila grafisko noformējumu instrumentu klasterī un centrālajā displejā.</span>
+      <span class="desc-line">Skalu izkārtojums mainās uz sportisku variantu, tiek aktivizēta AMG krāsu shēma un fona grafika.</span>
+      <span class="desc-line">Rezultāts vizuāli atbilst pilnai AMG Line komplektācijai pat bez tās.</span>
+      <span class="desc-line note">Pieejams modeļiem ar digitālo klasteru un MBUX sistēmu.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Ambient apgaismojums</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē vai paplašina salona apgaismojuma zonas, kas rūpnīcā nav iespējotas standarta konfigurācijā.</span>
+      <span class="desc-line">Pieejamas papildu krāsas, spilgtuma līmeņi un zonas durvīs, paneļos un kāju telpā.</span>
+      <span class="desc-line">Funkcija tiek aktivizēta, ja automašīnai ir fiziski uzstādīta ambient sistēma, bet nav aktivizēta programmatūrā.</span>
+      <span class="desc-line note">Bieži pieejams W205, W213, W222, W167 un citiem ar 64 krāsu sistēmu.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Sveiciena gaismas</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Pie atslēgšanas un aizslēgšanas spārnu lukturi, priekšējie un aizmugurējie lukturi iededz un nodziest animācijas veidā.</span>
+      <span class="desc-line">Padara ieeju vizuāli pievilcīgāku un palīdz identificēt automašīnu tumsā.</span>
+      <span class="desc-line note">Pieejams modeļiem ar atbilstošu luktura vadības elektroniku.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Drošības jostas brīdinājums</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Atspējo skaņas signālu priekšējā sēdeklī, ja drošības josta nav piesprādzēta.</span>
+      <span class="desc-line">Tikai audio daļa tiek izslēgta. Vizuālais indikators klasterī var palikt aktīvs.</span>
+      <span class="desc-line">Noderīgi privātīpašumā vai situācijās, kur josta fiziski traucē.</span>
+      <span class="desc-line note">Pārējās drošības sistēmas paliek pilnībā neskartas.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Aizmugurējo jostu brīdinājums</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Atspējo brīdinājumu par nepiesprādzētām aizmugurējo pasažieru drošības jostām.</span>
+      <span class="desc-line">Noderīgi bērniem autokrēslos vai pārvadājot preces, kur sensors aktivizējas bez pasažiera.</span>
+      <span class="desc-line">Izmaiņas veiktas tikai aizmugurējai sēdvietai, priekšējā josta netiek ietekmēta.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AdBlue līmeņa displejs</span></div>
+      <div class="card-right">
+        <span class="card-price">45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē AdBlue šķidruma līmeņa rādījumu tieši instrumentu klasterī kā atsevišķu indikatoru.</span>
+      <span class="desc-line">Bez šīs funkcijas AdBlue līmenis nav redzams braukšanas laikā un kļūst zināms tikai pie kritiska brīdinājuma.</span>
+      <span class="desc-line">Pēc aktivizācijas klasterī redzams precīzs līmenis procentos vai grafiskā formātā.</span>
+      <span class="desc-line note">Pieejams dīzeļdzinēju modeļiem ar SCR sistēmu no aptuveni 2014. gada.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Anti-Theft signalizācija</span></div>
+      <div class="card-right">
+        <span class="card-price">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē papildu kustības sensoru un salona aizsardzību, kas standarta konfigurācijā nav iespējota.</span>
+      <span class="desc-line">Signalizācija iedarbojas, ja automašīna tiek pārvietota, pacelts pārsegi vai kāds mēģina iekļūt salonā.</span>
+      <span class="desc-line">Darbojas neatkarīgi no standarta durvju aizsardzības un nodrošina papildu aizsardzības slāni.</span>
+      <span class="desc-line note">Pieejams modeļiem ar uzstādītu atbilstošu sensoru moduli.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Riepu spiediena sistēma</span></div>
+      <div class="card-right">
+        <span class="card-price">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Ieprogrammē un kalibrē riepu spiediena uzraudzības sistēmu pēc riepu maiņas vai jaunu sensoru montāžas.</span>
+      <span class="desc-line">Kļūdu kodi tiek dzēsti, sensori atkārtoti inicializēti un pārbaudīta to korekta atpazīšana.</span>
+      <span class="desc-line">Iespēja vienlaikus mainīt spiediena mērvienības no bar uz psi vai otrādi.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Premium Sound / Burmester</span></div>
+      <div class="card-right">
+        <span class="card-price">70 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē pilnu Premium vai Burmester audio sistēmas funkcionalitāti, ja skaļruņi un pastiprinātājs ir fiziski uzstādīti, bet nav aktivizēti programmatūras līmenī.</span>
+      <span class="desc-line">Tiek atbloķēti visi ekvalaizera iestatījumi, pastiprinātāja zonas un skaņas profili, kas iepriekš nebija pieejami.</span>
+      <span class="desc-line">Bieži gadās situācija, kad auto ir ar Burmester aparatūru, bet sistēma to nerāda. Kodēšana to izlabo.</span>
+      <span class="desc-line note">Pieejams S-class, E-class, GLE un citiem ar Burmester vai High-End Audio paketi.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Video kustības laikā</span></div>
+      <div class="card-right">
+        <span class="card-price">45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Noņem rūpnīcas ierobežojumu, kas bloķē video atskaņošanu centrālajā ekrānā braukšanas laikā.</span>
+      <span class="desc-line">Pēc atbloķēšanas video darbojas pilnvērtīgi arī kustībā.</span>
+      <span class="desc-line">Izmaiņas veiktas tikai programmatūras līmenī, bez iejaukšanās vadu instalācijā.</span>
+      <span class="desc-line note">Pieejams COMAND Online un MBUX sistēmām.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Aizmugurējās gaismas ar DRL</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē aizmugurējo lukturi darbību dienas gaitas gaismu režīmā.</span>
+      <span class="desc-line">Automašīna kļūst labāk pamanāma no aizmugures arī dienas laikā.</span>
+      <span class="desc-line">Darbojas paralēli priekšējo DRL gaismām un ieslēdzas automātiski.</span>
+      <span class="desc-line note">Pieejams modeļiem ar LED aizmugurējiem lukturiem.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Analogais ekrāns</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Iespējo analogā skaitītāja displeja režīmu ar tradicionālajām bultām ātruma un apgriešanās skaitītājam.</span>
+      <span class="desc-line">Pieejams pat modeļiem ar pilnīgi digitālo klasteru, kur analogs skats ir slēpts programmatūrā.</span>
+      <span class="desc-line">Vadītājs var brīvi pārslēgties starp digitālo un analogu skatu.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Gaisa recirkulācija</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Iestata automātiskā recirkulācijas režīma parametrus gaisa kondicionēšanas sistēmā.</span>
+      <span class="desc-line">Kondicionieris automātiski pārslēdzas uz iekšējo gaisu sastrēgumos vai intensīvas smakas gadījumā.</span>
+      <span class="desc-line">Recirkulācijas ieslēgšanās loģiku var pielāgot atbilstoši vadītāja vēlmēm.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Parktronic skaņas paplašinājums</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē papildu skaņas zonas parkošanas sensoriem, kas standarta konfigurācijā nav iespējotas.</span>
+      <span class="desc-line">Signāls kļūst informatīvāks, gradācija starp distances līmeņiem ir precīzāka.</span>
+      <span class="desc-line">Uzlabo parkošanu pilsētas apstākļos ar ierobežotu redzamību.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Parktronic skaļums</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Precīza parkošanas sensoru skaņas signāla skaļuma regulēšana.</span>
+      <span class="desc-line">Iespēja samazināt pārāk uzbāzīgu signālu vai pastiprināt vāji dzirdamu brīdinājumu.</span>
+      <span class="desc-line">Noderīgi, ja uzstādīta papildu audio sistēma, kas bloķē standarta parktronic skaņu.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Degvielas displejs (S-class)</span></div>
+      <div class="card-right">
+        <span class="card-price">38 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē degvielas daudzuma rādījumu instrumentu klasterī S-class modeļiem, kur tas pēc noklusējuma nav redzams.</span>
+      <span class="desc-line">Pēc aktivizācijas degvielas līmenis attēlots skaidri un pastāvīgi braukšanas laikā.</span>
+      <span class="desc-line note">Pieejams 5-ciparu digitālajiem klasteriem S-class modeļos.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Viena pieskāriena pagrieziena rādītājs</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Ar vienu īsu sviras kustību pagrieziena rādītājs iemirgo 3 reizes un automātiski izslēdzas.</span>
+      <span class="desc-line">Mirgoņu skaitu var iestatīt: 3, 5 vai 7 reizes atbilstoši vēlmēm.</span>
+      <span class="desc-line">Noderīgi joslas maiņas signalizēšanai bez nepieciešamības turēt sviru.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Aux kontrole</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Aktivizē pievienotās Aux ierīces vadību caur stūres riteņa pogām vai centrālo displeju.</span>
+      <span class="desc-line">Bez aktivizācijas Aux ieeja var būt fiziski pieejama, bet vadība nedarbojas.</span>
+      <span class="desc-line">Piemērots, ja uzstādīts papildu atskaņotājs vai cita ārējā audio ierīce.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Mērvienību maiņa</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Riepu spiediens: bar vai psi. Degvielas patēriņš: l/100 km vai mpg. Temperatūra: Celsijs vai Fārenheits.</span>
+      <span class="desc-line">Izmaiņas tiek piemērotas visā automašīnas sistēmā: klasterī, klimata kontrolē un navigācijā.</span>
+      <span class="desc-line note">Noderīgi importētām automašīnām vai pēc pārcelšanās uz citu valsti.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Diagnostika un kļūdu dzēšana</span></div>
+      <div class="card-right">
+        <span class="card-price free">Bez maksas</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Pilna automašīnas diagnostika ar profesionālo MB Star iekārtu.</span>
+      <span class="desc-line">Tiek pārbaudītas visas sistēmas: dzinējs, transmisija, drošībsspilveni, ABS, ESP, klimata kontrole un citi moduļi.</span>
+      <span class="desc-line">Visi kļūdu kodi tiek nolasīti, pārskatīti un pēc nepieciešamības dzēsti.</span>
+    </div></div></div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════
+     RU
+══════════════════════════════════════════ -->
+<section class="price-section" id="prices-ru" style="display:none">
+  <p class="sec-label">Цены</p>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">Start / Stop</span></div>
+      <div class="card-right">
+        <span class="card-price hot">от 45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner">
+      <div class="ss-options">
+        <div class="ss-option">
+          <span class="ss-option-title">Полное отключение &nbsp;—&nbsp; 55 €</span>
+          <span class="ss-option-desc">Система Start/Stop отключается навсегда на уровне программного обеспечения. Двигатель больше никогда не глушится на светофорах, в пробках или на коротких остановках. Нажимать кнопку при каждом запуске не нужно. Настройка сохраняется после перезапуска автомобиля.</span>
+        </div>
+        <div class="ss-option">
+          <span class="ss-option-title">Обратная логика &nbsp;—&nbsp; 45 €</span>
+          <span class="ss-option-desc">Start/Stop по умолчанию выключен. При желании его можно включить кнопкой вручную. Это противоположно заводской настройке, где система включается автоматически при каждом запуске и её нужно отключать вручную каждый раз.</span>
+        </div>
+        <div class="ss-option">
+          <span class="ss-option-title">Режим памяти &nbsp;—&nbsp; 45 €</span>
+          <span class="ss-option-desc">Автомобиль запоминает последнее выбранное состояние Start/Stop. Если перед выключением система была деактивирована, она останется деактивированной и при следующем запуске. Водителю больше не нужно думать о нажатии кнопки каждый раз.</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG меню в кластере</span></div>
+      <div class="card-right">
+        <span class="card-price hot">80 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует полное AMG спортивное меню в приборной панели с дополнительными экранами данных.</span>
+      <span class="desc-line">Отображает мощность двигателя и крутящий момент в процентах и абсолютных значениях, боковые перегрузки G, температуру охлаждающей жидкости и масла и другие параметры в реальном времени.</span>
+      <span class="desc-line">Экраны доступны без дополнительного оборудования, если соответствующая электроника уже установлена в автомобиле.</span>
+      <span class="desc-line note">Как правило доступно для W205, W213, W222, W166 и аналогичных моделей с COMAND или MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG / Maybach стартовый экран</span></div>
+      <div class="card-right">
+        <span class="card-price hot">50 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">При каждом запуске двигателя на экране отображается логотип и анимация AMG или Maybach.</span>
+      <span class="desc-line">Вариант выбирается в соответствии с комплектацией и серией модели автомобиля.</span>
+      <span class="desc-line">Изменения вносятся только на уровне программного обеспечения без вмешательства в оборудование.</span>
+      <span class="desc-line note">Доступно для моделей с цифровой системой MBUX или COMAND Online.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AMG дизайн приборной панели</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует AMG графическое оформление в кластере и центральном дисплее.</span>
+      <span class="desc-line">Раскладка шкал меняется на спортивный вариант, активируется цветовая схема AMG и фоновая графика.</span>
+      <span class="desc-line">Результат визуально соответствует полной комплектации AMG Line, даже если автомобиль таковой не является.</span>
+      <span class="desc-line note">Доступно для моделей с цифровым кластером и системой MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Ambient подсветка</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует или расширяет зоны подсветки салона, не включённые в стандартной заводской конфигурации.</span>
+      <span class="desc-line">Открываются дополнительные цвета, уровни яркости и зоны подсветки в дверях, панелях и пространстве для ног.</span>
+      <span class="desc-line">Функция активируется, если в автомобиле физически установлена система ambient, но не активирована программно.</span>
+      <span class="desc-line note">Часто доступно для W205, W213, W222, W167 и других с системой 64 цветов.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Приветственные огни</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">При разблокировке и блокировке автомобиля фары, задние фонари и поворотники выполняют приветственную анимацию.</span>
+      <span class="desc-line">Делает вход и выход визуально привлекательнее и помогает идентифицировать машину в темноте.</span>
+      <span class="desc-line note">Доступно для моделей с соответствующей электроникой управления фарами.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Ремень безопасности</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Отключает звуковой сигнал на переднем сиденье при непристёгнутом ремне безопасности.</span>
+      <span class="desc-line">Только аудио часть отключается. Визуальный индикатор в кластере может оставаться активным.</span>
+      <span class="desc-line">Полезно на частной территории или в ситуациях, где ремень физически мешает.</span>
+      <span class="desc-line note">Остальные системы безопасности остаются полностью нетронутыми.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Ремни задних пассажиров</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Отключает предупреждение о непристёгнутых ремнях задних пассажиров.</span>
+      <span class="desc-line">Полезно при перевозке детей в автокресле, где датчик срабатывает даже без пассажира, или при перевозке грузов.</span>
+      <span class="desc-line">Изменения вносятся точечно только для задних сидений, система переднего ремня не затрагивается.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AdBlue на панель</span></div>
+      <div class="card-right">
+        <span class="card-price">45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует отображение уровня жидкости AdBlue непосредственно в приборной панели как отдельный индикатор.</span>
+      <span class="desc-line">Без этой функции уровень AdBlue не виден во время езды и становится известен только при критическом предупреждении.</span>
+      <span class="desc-line">После активации в кластере виден точный уровень жидкости в процентах или в графическом формате.</span>
+      <span class="desc-line note">Доступно для дизельных моделей с системой SCR приблизительно с 2014 года.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Anti-Theft сигнализация</span></div>
+      <div class="card-right">
+        <span class="card-price">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует расширенный датчик движения и защиту салона, не включённые в стандартной конфигурации.</span>
+      <span class="desc-line">Сигнализация срабатывает при перемещении автомобиля, поднятии капота или попытке проникновения в салон.</span>
+      <span class="desc-line">Работает независимо от стандартной защиты дверей и обеспечивает дополнительный уровень охраны.</span>
+      <span class="desc-line note">Доступно для моделей с установленным соответствующим модулем датчиков.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Система давления шин</span></div>
+      <div class="card-right">
+        <span class="card-price">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Прописка и калибровка системы контроля давления после замены шин, сезонного монтажа или установки новых датчиков.</span>
+      <span class="desc-line">Коды ошибок сбрасываются, датчики повторно инициализируются и проверяется их корректное распознавание.</span>
+      <span class="desc-line">Возможность одновременно переключить единицы измерения давления с bar на psi или наоборот.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Premium Sound / Burmester</span></div>
+      <div class="card-right">
+        <span class="card-price">70 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует полную функциональность аудиосистемы Premium или Burmester, если динамики и усилитель физически установлены, но не активированы программно.</span>
+      <span class="desc-line">После активации открываются все настройки эквалайзера, зоны усилителя и звуковые профили, которые ранее были недоступны.</span>
+      <span class="desc-line">Часто бывает ситуация, когда автомобиль оснащён оборудованием Burmester, но система infotainment его не отображает. Кодирование это исправляет.</span>
+      <span class="desc-line note">Доступно для S-class, E-class, GLE и других с пакетом Burmester или High-End Audio.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Видео во время движения</span></div>
+      <div class="card-right">
+        <span class="card-price">45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Снимает заводское ограничение, блокирующее воспроизведение видео на центральном экране во время движения.</span>
+      <span class="desc-line">После разблокировки видео работает полноценно даже в движении.</span>
+      <span class="desc-line">Изменения вносятся только на программном уровне, без какого-либо вмешательства в электропроводку.</span>
+      <span class="desc-line note">Доступно для систем COMAND Online и MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Задние огни с ДХО</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует задние фонари в режиме дневных ходовых огней.</span>
+      <span class="desc-line">Автомобиль становится лучше заметен сзади даже в дневное время, что повышает безопасность движения.</span>
+      <span class="desc-line">Включается параллельно с передними ДХО и работает автоматически.</span>
+      <span class="desc-line note">Доступно для моделей с LED задними фонарями.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Аналоговый экран</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Включает режим отображения аналоговых стрелочных шкал спидометра и тахометра.</span>
+      <span class="desc-line">Доступно даже для моделей с полностью цифровым кластером, где аналоговый вид скрыт в программном обеспечении.</span>
+      <span class="desc-line">Водитель может свободно переключаться между цифровым и аналоговым видом.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Рециркуляция воздуха</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Настраивает параметры автоматического режима рециркуляции в системе кондиционирования воздуха.</span>
+      <span class="desc-line">Кондиционер автоматически переключается на внутренний воздух в пробках или при сильных запахах снаружи.</span>
+      <span class="desc-line">Логику включения рециркуляции можно настроить под предпочтения водителя.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Parktronic расширение звука</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует дополнительные звуковые зоны парктроника, не включённые в стандартной конфигурации.</span>
+      <span class="desc-line">Сигнал становится более информативным, градация между уровнями дистанции становится чётче.</span>
+      <span class="desc-line">Улучшает процесс парковки в городских условиях с ограниченной видимостью.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Parktronic громкость</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Точная регулировка громкости звукового сигнала парктроника.</span>
+      <span class="desc-line">Можно уменьшить слишком назойливый сигнал или усилить плохо слышимое предупреждение.</span>
+      <span class="desc-line">Полезно при наличии дополнительной аудиосистемы, которая перекрывает стандартный звук парктроника.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Расход топлива (S-class)</span></div>
+      <div class="card-right">
+        <span class="card-price">38 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует отображение уровня топлива в приборной панели для моделей S-class, где это по умолчанию скрыто.</span>
+      <span class="desc-line">После активации уровень топлива отображается чётко и постоянно во время езды.</span>
+      <span class="desc-line note">Доступно для 5-значных цифровых кластеров в моделях S-class.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Поворотник одним касанием</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Одно короткое касание рычага поворотника заставляет его мигнуть 3 раза и автоматически выключиться.</span>
+      <span class="desc-line">Количество миганий можно выбрать: 3, 5 или 7 раз под личные предпочтения.</span>
+      <span class="desc-line">Удобно для сигнализации при перестроении без удержания рычага.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Aux управление</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Активирует управление подключённым Aux устройством через кнопки на руле или центральный дисплей.</span>
+      <span class="desc-line">Без активации Aux вход может быть физически доступен, но управление с руля или дисплея не работает.</span>
+      <span class="desc-line">Подходит при наличии дополнительного плеера или внешнего аудиоустройства в автомобиле.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Смена единиц измерения</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Давление шин: bar или psi. Расход топлива: л/100 км или mpg. Температура: Цельсий или Фаренгейт.</span>
+      <span class="desc-line">Изменения применяются во всей системе: кластер, климат-контроль, навигация.</span>
+      <span class="desc-line note">Полезно для импортированных автомобилей или при переезде в другую страну.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Диагностика и сброс ошибок</span></div>
+      <div class="card-right">
+        <span class="card-price free">Бесплатно</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Полная диагностика автомобиля профессиональным оборудованием MB Star.</span>
+      <span class="desc-line">Проверяются все системы: двигатель, трансмиссия, подушки безопасности, ABS, ESP, климат-контроль, электронные модули и другие.</span>
+      <span class="desc-line">Все найденные коды ошибок считываются, анализируются и при необходимости сбрасываются.</span>
+    </div></div></div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════
+     EN
+══════════════════════════════════════════ -->
+<section class="price-section" id="prices-en" style="display:none">
+  <p class="sec-label">Pricing</p>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">Start / Stop</span></div>
+      <div class="card-right">
+        <span class="card-price hot">from 45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner">
+      <div class="ss-options">
+        <div class="ss-option">
+          <span class="ss-option-title">Full disable &nbsp;—&nbsp; 55 €</span>
+          <span class="ss-option-desc">The Start/Stop system is permanently disabled at software level. The engine never shuts off at traffic lights, in traffic or during short stops. No need to press the button on every start. The setting survives vehicle restarts.</span>
+        </div>
+        <div class="ss-option">
+          <span class="ss-option-title">Reverse logic &nbsp;—&nbsp; 45 €</span>
+          <span class="ss-option-desc">Start/Stop is off by default. If needed, it can be manually activated with the button. This is the opposite of the factory setting where the system activates automatically every time and must be turned off manually each drive.</span>
+        </div>
+        <div class="ss-option">
+          <span class="ss-option-title">Memory mode &nbsp;—&nbsp; 45 €</span>
+          <span class="ss-option-desc">The car remembers the last selected Start/Stop state. If the system was deactivated before switching off, it remains deactivated on the next start. The driver no longer needs to think about pressing the button every time.</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG cluster menu</span></div>
+      <div class="card-right">
+        <span class="card-price hot">80 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates the full AMG sport menu in the instrument cluster with additional data screens.</span>
+      <span class="desc-line">Displays engine power and torque in percentages and absolute values, lateral G-force, coolant temperature, oil temperature and other parameters in real time.</span>
+      <span class="desc-line">Screens are available without additional hardware if the relevant electronics are already present in the vehicle.</span>
+      <span class="desc-line note">Generally available for W205, W213, W222, W166 and similar models with COMAND or MBUX.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title hot">AMG / Maybach startup screen</span></div>
+      <div class="card-right">
+        <span class="card-price hot">50 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">On every ignition, the screen displays the AMG or Maybach logo with animation.</span>
+      <span class="desc-line">The variant is chosen according to the vehicle trim level and model series.</span>
+      <span class="desc-line">Changes are made at software level only, with no hardware modifications.</span>
+      <span class="desc-line note">Available for models with digital MBUX or COMAND Online system.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AMG dashboard design</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates AMG-style graphics in the instrument cluster and central display.</span>
+      <span class="desc-line">Gauge layout switches to a sport arrangement, AMG colour scheme and background graphics are enabled.</span>
+      <span class="desc-line">The result visually matches a full AMG Line specification, even if the car does not have one from the factory.</span>
+      <span class="desc-line note">Available for models with a digital cluster and MBUX system.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Ambient lighting</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates or expands interior ambient lighting zones not enabled in the standard factory configuration.</span>
+      <span class="desc-line">Unlocks additional colours, brightness levels and zones in doors, panels and footwells.</span>
+      <span class="desc-line">The function is activated when the ambient hardware is physically installed but not enabled in software.</span>
+      <span class="desc-line note">Often available for W205, W213, W222, W167 and others with the 64-colour system.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Welcome lights</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">When unlocking or locking the car, the headlights, rear lights and indicators perform a welcome animation sequence.</span>
+      <span class="desc-line">Makes entry and exit more visually appealing and helps identify the car in the dark.</span>
+      <span class="desc-line note">Available for models with appropriate lighting control electronics.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Seatbelt warning</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Disables the audio chime that triggers when the front seatbelt is not fastened.</span>
+      <span class="desc-line">Only the audio alert is turned off. The visual indicator in the cluster may remain active.</span>
+      <span class="desc-line">Useful on private property or situations where the belt physically causes issues.</span>
+      <span class="desc-line note">All other safety systems remain fully intact.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Rear seatbelt warning</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Disables the warning for unfastened rear passenger seatbelts.</span>
+      <span class="desc-line">Useful when transporting children in car seats where the sensor triggers even without a passenger, or when carrying cargo.</span>
+      <span class="desc-line">Changes are applied to rear seats only, the front belt system is not affected.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">AdBlue level display</span></div>
+      <div class="card-right">
+        <span class="card-price">45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Adds the AdBlue fluid level indicator directly to the instrument cluster as a separate readout.</span>
+      <span class="desc-line">Without this feature the AdBlue level is not visible during driving and only becomes known when a critical warning appears.</span>
+      <span class="desc-line">After activation the exact fluid level is shown in percentage or graphical format in the cluster.</span>
+      <span class="desc-line note">Available for diesel models with SCR system from approximately 2014 onwards.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Anti-Theft alarm</span></div>
+      <div class="card-right">
+        <span class="card-price">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates the extended motion sensor and interior protection not enabled in the standard configuration.</span>
+      <span class="desc-line">The alarm triggers if the car is moved, the bonnet is lifted or someone attempts to enter the cabin.</span>
+      <span class="desc-line">Operates independently from standard door protection and adds an extra layer of security.</span>
+      <span class="desc-line note">Available for models with the appropriate sensor module installed.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Tyre pressure system</span></div>
+      <div class="card-right">
+        <span class="card-price">55 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Codes and calibrates the tyre pressure monitoring system after tyre change, seasonal fitting or new sensor installation.</span>
+      <span class="desc-line">Error codes are cleared, sensors are reinitialised and checked for correct recognition.</span>
+      <span class="desc-line">Pressure units can also be switched between bar and psi at the same time if needed.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Premium Sound / Burmester</span></div>
+      <div class="card-right">
+        <span class="card-price">70 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates full Premium or Burmester audio functionality when speakers and amplifier are physically installed but not enabled at software level.</span>
+      <span class="desc-line">After activation all equaliser settings, amplifier zones and sound profiles become accessible.</span>
+      <span class="desc-line">It is common for a car to have Burmester hardware installed but the infotainment system does not show it. Coding resolves this.</span>
+      <span class="desc-line note">Available for S-class, E-class, GLE and others with Burmester or High-End Audio package.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Video in motion</span></div>
+      <div class="card-right">
+        <span class="card-price">45 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Removes the factory block on video playback on the central screen while the car is moving.</span>
+      <span class="desc-line">After unlocking, video works fully even during driving.</span>
+      <span class="desc-line">Changes are made at software level only. No wiring modifications are made.</span>
+      <span class="desc-line note">Available for COMAND Online and MBUX systems.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Rear lights with DRL</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates rear lights to function in daytime running light mode.</span>
+      <span class="desc-line">The vehicle becomes more visible from the rear even during the day, improving road safety.</span>
+      <span class="desc-line">Enabled in parallel with front DRL lights and works automatically.</span>
+      <span class="desc-line note">Available for models with LED rear lights.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Analogue screen</span></div>
+      <div class="card-right">
+        <span class="card-price">42 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Enables analogue needle gauge display mode for the speedometer and tachometer.</span>
+      <span class="desc-line">Available even on fully digital cluster vehicles where the analogue view is hidden in software.</span>
+      <span class="desc-line">The driver can freely switch between digital and analogue view.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Air recirculation</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Configures the automatic recirculation mode parameters in the air conditioning system.</span>
+      <span class="desc-line">The air conditioning automatically switches to internal air recirculation in traffic or when strong odours are detected outside.</span>
+      <span class="desc-line">The recirculation logic can be adjusted to the driver's preferences.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Parktronic sound extender</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates additional audio zones for parking sensors not enabled in the standard configuration.</span>
+      <span class="desc-line">The signal becomes more informative with clearer gradation between distance levels.</span>
+      <span class="desc-line">Improves parking especially in urban environments with limited visibility.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Parktronic volume</span></div>
+      <div class="card-right">
+        <span class="card-price">35 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Precise adjustment of the parking sensor audio signal volume.</span>
+      <span class="desc-line">Can be turned down if too intrusive or turned up if too quiet.</span>
+      <span class="desc-line">Useful when an aftermarket audio system masks the standard parktronic sound.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Fuel unit display (S-class)</span></div>
+      <div class="card-right">
+        <span class="card-price">38 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates the fuel level readout in the cluster for S-class models where it is hidden by default.</span>
+      <span class="desc-line">After activation the fuel level is displayed clearly and continuously during driving.</span>
+      <span class="desc-line note">Available for 5-digit digital clusters in S-class models.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">One touch turn signal</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">One short stalk tap makes the indicator flash 3 times and turn off automatically.</span>
+      <span class="desc-line">Number of flashes can be set to 3, 5 or 7 according to personal preference.</span>
+      <span class="desc-line">Ideal for lane change signalling without holding the stalk.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Aux control</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Activates control of a connected Aux device via steering wheel buttons or the central display.</span>
+      <span class="desc-line">Without activation the Aux input may be physically accessible but steering wheel or display control does not work.</span>
+      <span class="desc-line">Suitable when an aftermarket player or external audio device is installed in the car.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Units switch</span></div>
+      <div class="card-right">
+        <span class="card-price">33 €</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Tyre pressure: bar or psi. Fuel consumption: L/100 km or mpg. Temperature: Celsius or Fahrenheit.</span>
+      <span class="desc-line">Changes are applied across the entire system: cluster, climate control, navigation.</span>
+      <span class="desc-line note">Useful for imported vehicles or after relocating to another country.</span>
+    </div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle(this)">
+      <div class="card-left"><span class="card-title">Diagnostics and error clearing</span></div>
+      <div class="card-right">
+        <span class="card-price free">Free</span>
+        <span class="arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></span>
+      </div>
+    </div>
+    <div class="card-body"><div class="card-body-inner"><div class="desc-block">
+      <span class="desc-line">Full vehicle diagnostics with professional MB Star equipment.</span>
+      <span class="desc-line">All systems checked: engine, transmission, airbags, ABS, ESP, climate control, electronic modules and others.</span>
+      <span class="desc-line">All found fault codes are read, reviewed and cleared where appropriate.</span>
+    </div></div></div>
+  </div>
+
+</section>
+
+<!-- COMPAT -->
+<div class="compat">
+  <p id="compat-lv">Mercedes-Benz no 2003. gada. Pieejamas funkcijas atkarīgas no modeļa un komplektācijas.</p>
+  <p id="compat-ru" style="display:none">Mercedes-Benz от 2003 года. Доступные функции зависят от модели и комплектации.</p>
+  <p id="compat-en" style="display:none">Mercedes-Benz from 2003. Available features depend on model and trim level.</p>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-grid">
+    <a href="tel:+37120064457" class="btn btn-call">+371 200 644 57</a>
+    <a href="https://t.me/xa077xa" target="_blank" class="btn btn-tg">Telegram @xa077xa</a>
+  </div>
+</section>
+
+<script>
+/* ── TOGGLE ── */
+function toggle(header) {
+  var card = header.parentElement;
+  var body = card.querySelector('.card-body');
+  var isOpen = card.classList.contains('open');
+
+  if (isOpen) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        body.style.maxHeight = '0px';
+        body.style.opacity = '0';
+      });
+    });
+    card.classList.remove('open');
+  } else {
+    card.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    body.style.opacity = '1';
+    body.addEventListener('transitionend', function onEnd() {
+      body.style.maxHeight = 'none';
+      body.removeEventListener('transitionend', onEnd);
+    }, { once: true });
+  }
+}
+
+/* ── LANG ── */
+var groups = {
+  lv: ['badge-lv','h1-lv','prices-lv','compat-lv'],
+  ru: ['badge-ru','h1-ru','prices-ru','compat-ru'],
+  en: ['badge-en','h1-en','prices-en','compat-en']
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelector('.lang-btn[onclick="setLang(\''+lang+'\')"]').classList.add('active');
+  ['lv','ru','en'].forEach(function(l){
+    groups[l].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.style.display = 'none';
+    });
+  });
+  groups[lang].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.style.display = 'block';
+  });
+  document.documentElement.lang = lang;
+
+  /* close all open cards on lang switch */
+  document.querySelectorAll('.card.open').forEach(function(card) {
+    var body = card.querySelector('.card-body');
+    body.style.maxHeight = '0px';
+    body.style.opacity = '0';
+    card.classList.remove('open');
+  });
+}
+
+setLang('lv');
+</script>
+</body>
+</html>
